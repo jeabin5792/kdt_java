@@ -1,0 +1,182 @@
+day03(git 3일차)
+복습 -> 명령어 -> 팀 깃 실습 -> 자바 설치
+
+0. 복습
+git, git-hub
+	git : 버전 관리 시스템(로컬에서 사용)
+	git-hub : git을 저장하고 공유할 수 있는 서버를 제공하는 사이트
+
+git의 구조
+- Working Directory(작업 공간)
+	git init
+
+	파일의 상태 untracked
+
+- Staging Area(스테이징 영역)
+	git add . or 파일명
+	
+	tracked(추적)상태
+	unmodified : 수정이 되지 않은 상태
+	modified : 스테이징 영역에 들어온 파일 중 수정이 된 상태
+	staged : 로컬 저장소에 올릴 준비가 완료된 상태
+
+- Local Repository(로컬 저장소)
+	git commit -m "메시지"
+	
+	내가 원할 때 언제든 이전에 저장한 버전으로(이전 commit 시점)으로 돌아갈 수 있다
+	
+- Remote Repository(원격 저장소)
+	git-hub 원격 저장소에 저장공간(repository)를 만들고 그 주소를 로컬(git bash)에서 연결해주는 작업 선행!!
+	
+	git remote add 이름 주소
+	git remote -v
+
+	git push 이름 브랜치명
+	git pull 이름 브랜치명
+
+브랜치(branch)
+	한 개의 저장소를 여러 갈래로 나누어 관리할 수 있게 하는 개념
+	브랜치끼리는 서로 영향을 받지 않기 때문에 개별적인 작업을 진행할 수 있다
+	Git은 기본적으로 master, Git hub는 main 메인으로 사용된다
+
+	git branch
+	git branch 브래치이름
+	git switch 브랜치이름
+	git switch -c 브랜치이름
+	git branch -m 기존이름 변경할이름
+	git branch -D 브랜치이름
+	git merge 병합할 브랜치이름
+
+
+	(main)
+	$ 작업 진행, 커밋완료
+	test 브랜치에서 main에서 작업한 내용을 병합
+	(test)
+	$ git merge main
+
+git log
+	커밋날짜, 시간, 메시지, 체크섬, 작업자
+	
+1. 원격 저장소 관련 명령어
+git push 원격저장소이름 로컬브랜치이름
+	로컬 브랜치의 변경 내용을 원격저장소로 보내기
+
+git pull 원격저장소이름 로컬브랜치이름
+	원격 저장소의 변경내용을 가져오고 현재 브랜치에 병합
+
+git fetch 원격저장소이름
+	원격 저장소의 변경내용을 가져오기만하고 병합은 하지 않음
+
+git remote -v
+	현재 등록된 원격저장소 확인
+
+git remote show 원격저장소이름
+	원격 저장소의 상세정보 보기
+	
+git fetch --prune
+	원격에서 삭제된 브랜치를 로컬에서도 제거(이미 삭제된 원격 브랜치가 로컬에 남아있는경우)
+
+git remote rename 기존이름 변경할이름
+	원격 저장소의 이름 수정
+
+git remote remove 원격저장소이름
+	원격 저장소 이름 삭제
+
+git remote set-url 원격저장소이름 주소
+	원격 저장소의 URL 수정
+
+[실습1] 개인 실습
+	workspace에 gitTest1이라는 폴더 만들기(로컬)
+	test1.txt 파일에 "3일차 수업"으로 작성
+	test2.txt 파일에 "2교시 수업중"으로 작성
+	상태 확인후 커밋까지 진행(커밋메시지 형식 : 날짜 시간 어떤 파일을 생성했는지/수정했는지 작성)
+			ex) 250613 10:10 test1 파일 생성
+	원격 레포지토리 gitTest1 이름으로 만들기, readme.md파일 생성(원격)
+	원격 레포지토리와 로컬 레포지토리 연결
+	test1.txt, test2.txt 파일 push
+
+파일을 리눅스 명령어를 이용해서 생성 시(ex : echo "3일차 수업" > test1.txt)
+warning: in the working copy of 'test1.txt', LF will be replaced by CRLF the next time Git touches it
+단순 경고 메시지, LF 방식으로 만들어진 test1.txt 파일이 나중에 CSLF로 바뀔 예정이다라는 의미
+
+	
+[실습2] 클론 후 브랜치 생성 작업
+	원격저장소 클론 받기(workspace에 gitTest2 폴더)
+	새로운 브랜치 생성(test-file, test-dev)
+	test-file 브랜치에서 test3.txt 파일에 "클론 후 작업 중"으로 작성
+	커밋메시지 "날짜 시간 클론" 작성
+	test-dev 브랜치에서 test4.txt파일 만들고 아무내용 작성x
+	test-dev 브랜치에서 test1.txt 파일에 내용 "2번째 실습" 추가
+	커밋메시지 "날짜 시간 test4 파일생성, test1 파일수정" 작성
+	main 브랜치로 이동후 test-dev 브랜치 병합
+	main 브랜치에서 push
+
+[실습3] 팀별실습
+커밋메시지 : 날짜 시간 팀원1 홍길동 이름 추가
+	...
+
+팀원1이 레포지토리 gitClone 만들기(원격, 로컬)
+	원격에서는 readme.md 파일 추가
+	gitclone.txt 파일을 만들고 팀명과 본인 이름을 추가한다
+	본인이 만든 원격 레포지토리에 올린다
+팀원2가 팀원1이 만든 레포지토리 클론 후 gitclone.txt 파일 아래에 본인이름을 추가한다
+	본인의 원격 레포지토리에 올린다
+팀원들이 모두 동일한 방식으로 진행후 맨 마지막에 팀장이 받아서 본인이름을 추가한다
+깃허브링크를 단톡방에 올린다
+
+url 주소 이름은 origin으로만!!
+
+[팀실습]
+	팀장이 개인 레포지토리를 만들고 나머지 팀원이 clone해서 사용
+	팀원이 직접 git remote add로 팀장의 레포지토리를 등록
+	
+	하나의 레포지토리 안에서 브랜치를 만들어 팀원이 각자 파일 생성
+	팀장은 각 팀원의 브랜치를 pull받아서 병합
+
+login.html	=> 로그인 기능
+sign.html	=> 회원가입 기능
+write.html 	=> 쓰기 기능
+delete.html	=> 삭제 기능
+update.html	=> 수정 기능
+
+브런치명은 본인이름(영문자이니셜)
+커밋 메시지 날짜 시간 이름 어떤기능
+
+
+한타 => 푸른 뱀, AI 창작동화(2025)
+영타 => Landmark
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
