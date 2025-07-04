@@ -37,8 +37,8 @@ public class methodtask {
 		//5.정수 배열 줄 최대값과 최소값을 출력하는 메소드
 		//매개변수o 리턴값o
 		//메소드명 : ptintMinMax
-		Scanner sc=new Scanner(System.in);
-		
+		int[] ar2= {1,2,3,4};
+	mt.printMinMax(ar2);
 		
 		//6. 소문자는 대문자로, 대문자는 소문자로 바꿔주는 메소드
 	      //예시 ) BanAnA => bANaNa
