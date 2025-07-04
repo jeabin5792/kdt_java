@@ -43,7 +43,7 @@ public class Gugudan02 {
 		
 		while(j<=9) {
 			while(k<=9) {
-				System.out.printf("%d X %d = %2d\t",j,k,j*k);
+				System.out.printf("%d X %d = %2d\t",k,j,j*k);
 //				System.out.print(j + " X " + k + " = " + j*k + "\t");
 				k++;
 			}
