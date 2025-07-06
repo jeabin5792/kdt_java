@@ -28,14 +28,14 @@ public class LambdaMain {
 //      매개변수가 2개이므로 소괄호 생략 불가능
 //      출력문1줄이므로 {} ; 생략가능
 
-		CombInter ci2 = new CombInter() {
+		CombInter1 ci2 = new CombInter1() {
 
 	         @Override
 	         public String combine(String str1, String str2) {
 	            return str1 + str2;
 	         }
 	      };
-	      CombInter c2 = (str1, str2) -> str1 + str2;
+	      CombInter1 c2 = (str1, str2) -> str1 + str2;
 
 		
 		
